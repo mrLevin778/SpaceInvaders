@@ -3,7 +3,6 @@
 import sys
 
 import pygame
-from pygame import event
 
 from settings import Settings
 from ship import Ship
