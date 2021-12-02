@@ -18,10 +18,13 @@ class Ship():
 
         #save float value for ship position in horizontal
         self.x = float(self.rect.x)
+        self.y = float(self.rect.y)
 
         #move indication
         self.moving_right = False
         self.moving_left = False
+        self.moving_up = False
+        self.moving_down = False
 
     def update(self):
         """refresh ship position for move indicator"""
@@ -29,9 +32,14 @@ class Ship():
             self.x += self.settings.ship_speed
         if self.moving_left and self.rect.left > 0:
             self.x -= self.settings.ship_speed
+        if self.moving_up and self.rect.top > 0:
+            self.y -= self.settings.ship_speed
+        if self.moving_down and self.rect.bottom < self.screen_rect.bottom:
+            self.y += self.settings.ship_speed
 
         #refresh object rect in self.x
         self.rect.x = self.x
+        self.rect.y = self.y
 
     def blitme(self):
         """paint ship"""
