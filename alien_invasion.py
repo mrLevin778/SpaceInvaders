@@ -1,12 +1,12 @@
 """Main Class"""
 
 import sys
-
+from time import sleep
 import pygame
 from pygame import event
 from pygame.constants import K_DOWN
-
 from settings import Settings
+from game_stats import GameStats
 from ship import Ship
 from bullet import Bullet
 from alien import Alien
@@ -23,6 +23,7 @@ class AlienInvasion:
         self.settings.screen_width = self.screen.get_rect().width
         self.settings.screen_height = self.screen.get_rect().height
         pygame.display.set_caption("Space Invaders")
+        self.stats = GameStats(self)
 
         self.ship = Ship(self)
         self.bullets = pygame.sprite.Group()
@@ -35,9 +36,11 @@ class AlienInvasion:
         """Main loop of game"""
         while True:
             self._check_events()
-            self.ship.update()
-            self._update_bullets()
-            self._update_aliens()
+            if self.stats.game_active:
+                self.ship.update()
+                self._update_bullets()
+                self._update_aliens()
+                
             self._update_screen()
 
             
@@ -102,7 +105,6 @@ class AlienInvasion:
                 self._create_alien(alien_number, row_number)
 
             
-
     def _create_alien(self, alien_number, row_number):
         """create alien and set it in string"""
         alien = Alien(self)
@@ -156,6 +158,14 @@ class AlienInvasion:
             #remove bullets and create new fleet
             self.bullets.empty()
             self._create_fleet()
+    
+
+    def _check_aliens_bottom(self):
+        """check collision aliens vs bottom"""
+        screen_rect = self.screen.get_rect()
+        for alien in self.aliens.sprites():
+            self._ship_hit()
+            break
 
 
     def _update_aliens(self):
@@ -166,7 +176,29 @@ class AlienInvasion:
 
         #check collision ship vs alien
         if pygame.sprite.spritecollideany(self.ship, self.aliens):
-            print()
+            self._ship_hit()
+
+        #check collision alien vs bottom
+        self._check_aliens_bottom()
+
+
+    def _ship_hit(self):
+        """event for collision ship vs alien"""
+        if self.stats.ships_left > 0:
+            self.stats.ships_left -= 1
+
+            #remove aliens and bullets
+            self.aliens.empty()
+            self.bullets.empty()
+
+            #create new fleet and fit ship position
+            self._create_fleet()
+            self.ship.center_ship()
+
+            #pause
+            sleep(1.0)
+        else:
+            self.stats.game_active = False
 
 
     def _update_screen(self):
