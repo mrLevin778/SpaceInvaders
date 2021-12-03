@@ -7,6 +7,7 @@ from pygame import event
 from pygame.constants import K_DOWN
 from settings import Settings
 from game_stats import GameStats
+from button import Button
 from ship import Ship
 from bullet import Bullet
 from alien import Alien
@@ -31,6 +32,9 @@ class AlienInvasion:
 
         self._create_fleet()
 
+        #create PLAY button
+        self.play_button = Button(self, "PLAY")
+
 
     def run_game(self):
         """Main loop of game"""
@@ -54,6 +58,15 @@ class AlienInvasion:
                 self._check_keydown_events(event)   
             elif event.type == pygame.KEYUP:
                 self._check_keyup_events(event)
+            elif event.type == pygame.MOUSEBUTTONDOWN:
+                mouse_pos = pygame.mouse.get_pos()
+                self._check_play_button(mouse_pos)
+
+
+    def _check_play_button(self, mouse_pos):
+        """start new game, if button pressed"""
+        if self.play_button.rect.collidepoint(mouse_pos):
+            self.stats.game_active = True
                 
                 
     def _check_keydown_events(self, event):
@@ -210,6 +223,10 @@ class AlienInvasion:
         for bullet in self.bullets.sprites():
             bullet.draw_bullet()
         self.aliens.draw(self.screen)
+
+        #paint PLAY button, if game is inactive
+        if not self.stats.game_active:
+            self.play_button.draw_button()
 
         pygame.display.flip()
 
