@@ -171,6 +171,10 @@ class AlienInvasion:
         """check bullets vs aliens collisiom"""
         collisions = pygame.sprite.groupcollide(    
                     self.bullets, self.aliens, True, True)
+        
+        if collisions:
+            self.stats.score += self.settings.alien_points
+            self.sb.prep_score()
         if not self.aliens:
             #remove bullets and create new fleet
             self.bullets.empty()
@@ -269,7 +273,7 @@ class AlienInvasion:
             self.hard_button.draw_h_button()   
 
         pygame.display.flip()
-        
+
 
 if __name__ == '__main__':
     #create game copy and run

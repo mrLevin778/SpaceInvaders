@@ -35,6 +35,8 @@ class Settings:
         self.alien_speed = 1.0
         #1 - right, -1 - left
         self.fleet_direction = 1
+        #score points
+        self.alien_points = 50
 
 
     def increase_speed(self):
