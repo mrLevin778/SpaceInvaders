@@ -20,6 +20,7 @@ class Settings:
         #game speed
         self.initialize_dynamic_settings()
         self.speedup_scale = 1.1
+        self.score_scale = 1.5
         self.button_width = 300
         self.button_height = 50
         self.e_button_pos = 50
@@ -36,7 +37,7 @@ class Settings:
         #1 - right, -1 - left
         self.fleet_direction = 1
         #score points
-        self.alien_points = 50
+        self.alien_points = 20
 
 
     def increase_speed(self):
@@ -44,3 +45,4 @@ class Settings:
         self.ship_speed *= self.speedup_scale
         self.bullet_speed *= self.speedup_scale
         self.alien_speed *= self.speedup_scale
+        self.alien_points = int(self.alien_points * self.score_scale)
