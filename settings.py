@@ -23,10 +23,10 @@ class Settings:
         self.score_scale = 1.5
         self.button_width = 300
         self.button_height = 50
-        self.e_button_pos = 50
-        self.m_button_pos = 150
-        self.h_button_pos = 250
-        self.button_x_pos = 0 #(self.screen_width / 2) - (self.button_width / 2)
+        self.e_button_pos = (self.screen_height / 2) - 75
+        self.m_button_pos = (self.screen_height / 2) + 25
+        self.h_button_pos = (self.screen_height / 2) + 125
+        self.button_x_pos = ((self.screen_width / 2) - (self.button_width / 2)) + 40
 
 
     def initialize_dynamic_settings(self):
