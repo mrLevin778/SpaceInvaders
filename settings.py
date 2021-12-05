@@ -21,13 +21,10 @@ class Settings:
         self.initialize_dynamic_settings()
         self.speedup_scale = 1.1
         self.score_scale = 1.5
-        self.button_width = 300
-        self.button_height = 50
-        self.e_button_pos = (self.screen_height / 2) - 75
-        self.m_button_pos = (self.screen_height / 2) + 25
-        self.h_button_pos = (self.screen_height / 2) + 125
-        self.button_x_pos = ((self.screen_width / 2) - (self.button_width / 2)) + 40
-
+        self.button_width = 400
+        self.button_height = 100
+        self.buttons_positions()
+        
 
     def initialize_dynamic_settings(self):
         """Initialize variable settings"""
@@ -46,3 +43,11 @@ class Settings:
         self.bullet_speed *= self.speedup_scale
         self.alien_speed *= self.speedup_scale
         self.alien_points = int(self.alien_points * self.score_scale)
+
+
+    def buttons_positions(self):
+        """take buttons positions"""
+        self.e_button_pos = (self.screen_height / 2) - ((self.button_height / 2) + self.button_height)
+        self.m_button_pos = (self.screen_height / 2) + (self.button_height / 2)
+        self.h_button_pos = (self.screen_height / 2) + ((self.button_height / 2) + (self.button_height * 2))
+        self.button_x_pos = ((self.screen_width / 2) - (self.button_width / 2)) + 40

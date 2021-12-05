@@ -89,9 +89,7 @@ class AlienInvasion:
         self.settings.initialize_dynamic_settings()
         self.stats.reset_stats()
         self.stats.game_active = True
-        self.sb.prep_score()
-        self.sb.prep_level()
-        self.sb.prep_ships()
+        self.prep_images()
 
         #reset bullets and aliens
         self.aliens.empty()
@@ -103,8 +101,15 @@ class AlienInvasion:
 
         #hide mouse
         pygame.mouse.set_visible(False)
-         
-                
+
+
+    def prep_images(self):
+        """prepare images"""
+        self.sb.prep_score()
+        self.sb.prep_level()
+        self.sb.prep_ships()
+
+                      
     def _check_keydown_events(self, event):
         if event.key == pygame.K_RIGHT:
             #move ship right
@@ -263,6 +268,13 @@ class AlienInvasion:
                 break
 
 
+    def _draw_buttons(self):
+        """draw buttons"""
+        self.easy_button.draw_e_button() #easy
+        self.medium_button.draw_m_button() #medium
+        self.hard_button.draw_h_button() #hard
+
+
     def _update_screen(self):
         """refresh screen on loop and how last created screen"""
         self.screen.fill(self.settings.bg_color)
@@ -276,9 +288,7 @@ class AlienInvasion:
 
         #paint PLAY button, if game is inactive
         if not self.stats.game_active:
-            self.easy_button.draw_e_button()
-            self.medium_button.draw_m_button()
-            self.hard_button.draw_h_button()   
+            self._draw_buttons()   
 
         pygame.display.flip()
 
