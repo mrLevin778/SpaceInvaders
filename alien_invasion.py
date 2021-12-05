@@ -11,6 +11,7 @@ from button import Button
 from ship import Ship
 from bullet import Bullet
 from alien import Alien
+from scoreboard import Scoreboard
 
 class AlienInvasion:
     """Main class, manage resources and gameplay"""
@@ -25,6 +26,7 @@ class AlienInvasion:
         self.settings.screen_height = self.screen.get_rect().height
         pygame.display.set_caption("Space Invaders")
         self.stats = GameStats(self)
+        self.sb = Scoreboard(self)
 
         self.ship = Ship(self)
         self.bullets = pygame.sprite.Group()
@@ -257,14 +259,17 @@ class AlienInvasion:
             bullet.draw_bullet()
         self.aliens.draw(self.screen)
 
+        #paint score
+        self.sb.show_score()
+
         #paint PLAY button, if game is inactive
         if not self.stats.game_active:
             self.easy_button.draw_e_button()
             self.medium_button.draw_m_button()
-            self.hard_button.draw_h_button()
-
+            self.hard_button.draw_h_button()   
 
         pygame.display.flip()
+        
 
 if __name__ == '__main__':
     #create game copy and run
