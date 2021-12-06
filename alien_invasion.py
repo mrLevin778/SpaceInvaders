@@ -11,6 +11,7 @@ from ship import Ship
 from bullet import Bullet
 from alien import Alien
 from scoreboard import Scoreboard
+from background import Background
 
 class AlienInvasion:
     """Main class, manage resources and gameplay"""
@@ -26,6 +27,7 @@ class AlienInvasion:
         pygame.display.set_caption("Space Invaders")
         self.stats = GameStats(self)
         self.sb = Scoreboard(self)
+        self.bg = Background(self)
 
         self.ship = Ship(self)
         self.bullets = pygame.sprite.Group()
@@ -277,6 +279,7 @@ class AlienInvasion:
     def _update_screen(self):
         """refresh screen on loop and how last created screen"""
         self.screen.fill(self.settings.bg_color)
+        self.bg.blit_bg()
         self.ship.blitme()
         for bullet in self.bullets.sprites():
             bullet.draw_bullet()

@@ -12,7 +12,7 @@ class Ship(Sprite):
         self.screen_rect = ai_game.screen.get_rect()
 
         #load ship image and get rect
-        self.image = pygame.image.load('images/ship.bmp')
+        self.image = pygame.image.load('images/ship.jpg')
         self.rect = self.image.get_rect()
 
         #create new ship in bottom and center of screen
