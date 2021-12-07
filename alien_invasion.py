@@ -287,8 +287,9 @@ class AlienInvasion:
 
         #paint score
         self.sb.show_score()
-
-        #paint PLAY button, if game is inactive
+        #if self.stats.game_active:
+            #self.bg.blit_animated()
+        #paint buttons, if game is inactive
         if not self.stats.game_active:
             self._draw_buttons()   
 
