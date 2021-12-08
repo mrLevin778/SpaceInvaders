@@ -280,19 +280,16 @@ class AlienInvasion:
         """refresh screen on loop and how last created screen"""
         self.screen.fill(self.settings.bg_color)
         self.bg.blit_bg()
-        self.ship.blitme()
-        for bullet in self.bullets.sprites():
-            bullet.draw_bullet()
-        self.aliens.draw(self.screen)
-
-        #paint score
-        self.sb.show_score()
-        #if self.stats.game_active:
-            #self.bg.blit_animated()
-        #paint buttons, if game is inactive
+        if self.stats.game_active:
+            self.ship.blitme()
+            for bullet in self.bullets.sprites():
+                bullet.draw_bullet()
+            self.aliens.draw(self.screen)
+            #paint score
+            self.sb.show_score()
+        #paint buttons and static background, if game is inactive
         if not self.stats.game_active:
-            self._draw_buttons()   
-
+            self._draw_buttons()
         pygame.display.flip()
 
 
