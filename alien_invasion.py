@@ -58,7 +58,8 @@ class AlienInvasion:
         """mouse and keyboard events"""
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                    sys.exit()
+                self.stats.save_scores()
+                sys.exit()
             elif event.type == pygame.KEYDOWN:
                 self._check_keydown_events(event)   
             elif event.type == pygame.KEYUP:
@@ -90,6 +91,7 @@ class AlienInvasion:
         self.settings.initialize_dynamic_settings()
         self.stats.reset_stats()
         self.stats.game_active = True
+        self.stats.load_scores()
         self.prep_images()
 
         #reset bullets and aliens
@@ -124,6 +126,7 @@ class AlienInvasion:
         #    self.ship.moving_down = True            
         elif event.key == pygame.K_q:
             #if pressed key Q, then exit
+            self.stats.save_scores()
             sys.exit()
         elif event.key == pygame.K_SPACE:
             self._fire_bullet()
