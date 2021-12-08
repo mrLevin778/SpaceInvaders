@@ -11,7 +11,7 @@ class Background(Sprite):
         self.screen = ai_game.screen
         self.screen_rect = ai_game.screen.get_rect()
         self.bg_w, self.bg_h = (self.settings.screen_width, self.settings.screen_height)
-
+        #load image
         self.bg_image = pygame.transform.smoothscale(pygame.image.load('images/space.jpg'), (self.bg_w, self.bg_h))
         self.rect = self.bg_image.get_rect()
         self.rect.midtop = self.screen_rect.midtop 

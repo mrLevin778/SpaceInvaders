@@ -8,13 +8,10 @@ class Button:
         self.settings = Settings()
         self.screen = ai_game.screen
         self.screen_rect = self.screen.get_rect()
-
         #set size and other settings
         self.button_color = (0, 255, 0)
         self.text_color = (255, 255, 255)
-        
         self.font = pygame.font.SysFont(None, 48)
-
         #create rect button object in position
         self.e_rect = pygame.Rect(self.settings.button_x_pos, self.settings.e_button_pos, self.settings.button_width
                             , self.settings.button_height)
@@ -23,7 +20,6 @@ class Button:
         self.h_rect = pygame.Rect(self.settings.button_x_pos, self.settings.h_button_pos, self.settings.button_width
                             , self.settings.button_height)
         #self.rect.position = self.screen_rect.center
-
         self._prep_msg(msg)
 
 

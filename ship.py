@@ -10,17 +10,13 @@ class Ship(Sprite):
         self.screen = ai_game.screen
         self.settings = ai_game.settings
         self.screen_rect = ai_game.screen.get_rect()
-
         #load ship image and get rect
         self.image = pygame.image.load('images/ship.jpg')
         self.rect = self.image.get_rect()
-
         #create new ship in bottom and center of screen
         self.rect.midbottom = self.screen_rect.midbottom
-
         #save float value for ship position in horizontal
         self.x = float(self.rect.x)
-
         #move indication
         self.moving_right = False
         self.moving_left = False
