@@ -143,7 +143,7 @@ class AlienInvasion:
 
     def _fire_bullet(self):
         """create new bullet and add it to group"""
-        if len(self.bullets) < self.settings.bullets_allowed:
+        if len(self.bullets) < self.stats.bullets_allowed:
             new_bullet = Bullet(self)
             self.bullets.add(new_bullet)
 
@@ -176,6 +176,7 @@ class AlienInvasion:
             self.settings.increase_speed()
             #level up
             self.stats.level += 1
+            self.stats.bullets_allowed += 1
             self.sb.prep_level()
 
 
