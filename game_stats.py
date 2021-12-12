@@ -1,4 +1,6 @@
 import json
+from pygame import mixer
+import pygame
 
 class GameStats:
     """Stats"""
@@ -11,6 +13,7 @@ class GameStats:
         self.game_active = False
         self.high_score = 0
         self.high_score_file = 'high_score.json'
+        self.bang = pygame.mixer.Sound('sounds/bang.wav')
         self.load_scores()
         self.save_scores()
         
@@ -20,6 +23,11 @@ class GameStats:
         self.ships_left = self.settings.ship_limit
         self.score = 0
         self.level = 1
+
+
+    def play_bang_sound(self):
+        """play bang sound"""
+        self.bang.play()       
 
 
     def load_scores(self):
