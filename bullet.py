@@ -1,6 +1,7 @@
 import pygame
 from pygame.sprite import Sprite
 
+
 class Bullet(Sprite):
     """class for bullets managing"""
 
@@ -10,18 +11,18 @@ class Bullet(Sprite):
         self.screen = ai_game.screen
         self.settings = ai_game.settings
         self.color = self.settings.bullet_color
-        #create bullret rect in (0, 0) and set position
-        self.rect = pygame.Rect(0,0, self.settings.bullet_width,
-            self.settings.bullet_height)
+        # create bullret rect in (0, 0) and set position
+        self.rect = pygame.Rect(0, 0, self.settings.bullet_width,
+                                self.settings.bullet_height)
         self.rect.midtop = ai_game.ship.rect.midtop
-        #save bullet position as float
+        # save bullet position as float
         self.y = float(self.rect.y)
 
     def update(self):
         """move bullets up"""
-        #refresh bullet position
+        # refresh bullet position
         self.y -= self.settings.bullet_speed
-        #refresh rect position
+        # refresh rect position
         self.rect.y = self.y
 
     def draw_bullet(self):

@@ -3,39 +3,37 @@ class Settings:
 
     def __init__(self):
         """Const settings initialization"""
-        #screen settings
+        # screen settings
         self.screen_width = 1200
         self.screen_height = 600
-        #set background color
+        # set background color
         self.bg_color = (30, 30, 30)
-        #bullet settings
+        # bullet settings
         self.bullet_width = 5
         self.bullet_height = 10
         self.bullet_color = (150, 0, 0)
-        #self.bullets_allowed = 3
-        #alien settings
+        # self.bullets_allowed = 3
+        # alien settings
         self.fleet_drop_speed = 10
-        #ship settings
+        # ship settings
         self.ship_limit = 3
-        #game speed
+        # game speed
         self.initialize_dynamic_settings()
         self.speedup_scale = 1.1
         self.score_scale = 1.5
         self.button_width = 400
         self.button_height = 100
         self.buttons_positions()
-        
 
     def initialize_dynamic_settings(self):
         """Initialize variable settings"""
         self.ship_speed = 1.5
         self.bullet_speed = 3.0
         self.alien_speed = 1.0
-        #1 - right, -1 - left
+        # 1 - right, -1 - left
         self.fleet_direction = 1
-        #score points
+        # score points
         self.alien_points = 20
-
 
     def increase_speed(self):
         """game speed faster"""
@@ -43,7 +41,6 @@ class Settings:
         self.bullet_speed *= self.speedup_scale
         self.alien_speed *= self.speedup_scale
         self.alien_points = int(self.alien_points * self.score_scale)
-
 
     def buttons_positions(self):
         """take buttons positions"""
